@@ -40,11 +40,9 @@ while not gameOver:
             try:
                 row = int(args[0])
                 col = int(args[1])
-                '''
                 if (not isPointInGrid((row,col), grid.shape)):
                     print('Error: point out of bounds')
                     continue
-                '''
                 break
             except:
                 print('Error: must have two integers as coordinates')

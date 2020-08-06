@@ -58,8 +58,15 @@ def printGrid(grid_game, grid):
 
 def printGridPretty(grid_game, grid):
     height, width = grid.shape
+    #
+    print('+---'*(width+1), end='+\n')
+    for c in range(width+1):
+        print('| %2d'%c, end='')
+    print('|')
+    #
     for r in range(height):
-        print('+---'*width, end='+\n')
+        print('+---'*(width+1), end='+\n')
+        print('|%2d '%(r+1), end='')
         for c in range(width):
             # '| * '
             print('| ', end='')
@@ -74,7 +81,7 @@ def printGridPretty(grid_game, grid):
                     print(str(grid[r,c]), end='')
             print(' ', end='')
         print('|',end='\n')
-    print('+---'*width, end='+\n\n')
+    print('+---'*(width+1), end='+\n\n')
 
 def floodFillZero(pos, grid_game, grid):
     height, width = grid.shape

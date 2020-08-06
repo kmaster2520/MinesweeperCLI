@@ -14,6 +14,10 @@ grid = generateGrid(grid_raw)
 grid_game = np.zeros((height,width), dtype=np.int)
 # GAME LOOP
 
+print('WIDTH: ' + str(width))
+print('HEIGHT: ' + str(height))
+print('BOMB DENSITY: ' + str(density * 100) + '%')
+
 # steps: choose position, flip over (use floodfill zero)
 row = 0
 col = 0
@@ -33,14 +37,14 @@ while not gameOver:
         command = action[0]
         args = action[1:]
         # move command
-        if (command == 'move' or command == 'm'):
-            command = 'move'
+        if (command == 'sel' or command == 's'):
+            command = 'sel'
             if (len(args) != 2):
                 print('Error: must have two integers as coordinates')
                 continue
             try:
-                row = int(args[0])
-                col = int(args[1])
+                row = int(args[0]) - 1
+                col = int(args[1]) - 1
                 if (not isPointInGrid((row,col), grid.shape)):
                     print('Error: point out of bounds')
                     continue
@@ -51,7 +55,7 @@ while not gameOver:
     #
     pos = (row, col)
     #
-    if (command == 'move'):
+    if (command == 'sel'):
         # make sure first move doesn't cause a loss
         # deduct 1 from spaces around, then update this space
         if (firstMove and isBomb(pos, grid_raw)):

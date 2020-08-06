@@ -25,13 +25,14 @@ firstMove = True # make sure first move isn't a bomb space
 
 gameOver = False
 while not gameOver:
+    # get action
     while 1:
         action = input('> ').split(' ')
         if (len(action) == 0):
             continue
         command = action[0]
         args = action[1:]
-        #
+        # move command
         if (command == 'move' or command == 'm'):
             command = 'move'
             if (len(args) != 2):
@@ -51,7 +52,9 @@ while not gameOver:
     pos = (row, col)
     #
     if (command == 'move'):
-        if (firstMove):
+        # make sure first move doesn't cause a loss
+        # deduct 1 from spaces around, then update this space
+        if (firstMove and isBomb(pos, grid_raw)):
             countBombs = 0
             spaces = getSpacesAround(pos, grid.shape)
             for space in spaces:
@@ -60,8 +63,8 @@ while not gameOver:
                 if (isBomb(space, grid_raw)):
                     countBombs += 1
             grid[pos] = countBombs
-            firstMove = False
-
+        firstMove = False
+        # game over if bomb
         if (grid[row,col] > 8):
             grid_game[pos] = 1
             gameOver = True
@@ -70,7 +73,7 @@ while not gameOver:
             floodFillZero(pos, grid_game, grid)
     #
     printGridPretty(grid_game, grid)
-    #
+    # end game when all non-bomb spaces flipped
     if (foundAllSpaces(grid_game, grid)):
         gameOver = True
         print('You win.')

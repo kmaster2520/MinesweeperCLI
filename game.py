@@ -3,7 +3,7 @@ from lib import *
 
 width = 15
 height = 10
-density = 0.2
+density = 0.3
 
 grid_raw = np.random.binomial(1, density, width * height).reshape(height, width)
 grid = generateGrid(grid_raw)        
@@ -68,9 +68,13 @@ while not gameOver:
                     countBombs += 1
             grid[pos] = countBombs
         firstMove = False
-        # game over if bomb
+        # game over if bomb, flip over all bombs
         if (grid[row,col] > 8):
             grid_game[pos] = 1
+            for r in range(height):
+                for c in range(width):
+                    if (grid[r,c] > 8):
+                        grid_game[r,c] = 1
             gameOver = True
             print('You found a bomb. You lose.')
         else:

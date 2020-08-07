@@ -12,7 +12,7 @@ The game starts by typing the following command:
 ```
 $ python game.py
 ```
-Depending on your Python 3 installation, you have to type ```python3``` instead of ```python```
+Depending on your Python 3 installation, you have to type ```python3``` instead of ```python```. It is recommended to make the terminal window large to fit the game board view.
 
 
 ## Player Commands

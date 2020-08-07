@@ -22,13 +22,11 @@ def isPointInGrid(pos, grid_shape):
     return 0 <= r < height and 0 <= c < width
 
 def getSpacesAround(pos, grid_shape):
-    height, width = grid_shape
     r, c = pos
     spaces = [(r-1,c), (r+1,c), (r,c-1), (r,c+1), (r-1,c-1), (r-1,c+1), (r+1,c-1), (r+1,c+1)]
     return [space for space in spaces if isPointInGrid(space, grid_shape)]
 
 def getSpacesAdjacent(pos, grid_shape):
-    height, width = grid_shape
     r, c = pos
     spaces = [(r-1,c), (r+1,c), (r,c-1), (r,c+1)]
     return [space for space in spaces if isPointInGrid(space, grid_shape)]
@@ -46,7 +44,7 @@ def printGrid(grid_game, grid):
     for r in range(height):
         for c in range(width):
             if (grid_game[r,c] == 0):
-                print('~  ', end='')
+                print('-  ', end='')
             else:
                 if (grid[r,c] == 9):
                     print('x  ', end='')
@@ -71,7 +69,7 @@ def printGridPretty(grid_game, grid):
             # '| * '
             print('| ', end='')
             if (grid_game[r,c] == 0):
-                print('~', end='')
+                print('-', end='')
             else:
                 if (grid[r,c] == 9):
                     print('x', end='')
@@ -84,8 +82,6 @@ def printGridPretty(grid_game, grid):
     print('+---'*(width+1), end='+\n\n')
 
 def floodFillZero(pos, grid_game, grid):
-    height, width = grid.shape
-    r, c = pos
     if (not isPointInGrid(pos, grid.shape)):
         return
     if (grid[pos] > 8):

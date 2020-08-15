@@ -31,7 +31,7 @@ gameOver = False
 while not gameOver:
     # get action
     while 1:
-        action = input('> ').split(' ')
+        action = input('m> ').split(' ')
         if (len(action) == 0):
             continue
         command = action[0]
@@ -52,6 +52,9 @@ while not gameOver:
             except:
                 print('Error: must have two integers as coordinates')
                 continue
+        else:
+            print('Error: unrecognized command')
+            continue
     #
     pos = (row, col)
     #
